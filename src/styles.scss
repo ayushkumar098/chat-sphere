@@ -1,8 +1,14 @@
 
-$primary: #52057B;
-// #892CDC
-// #BC6FF1
-
+// $primary: #DAFFFB;
+// $sec:#001C30;
+// $ter:#002042;
+// $fourth:#001C30 ;
+// $fifth: #002042;
+$primary: #d2e6cd;
+$sec: #466374;
+$ter: #26323b;
+$fourth: #86bbac;
+$fifth: #497f76;
 
 .formContainer{
     background-color: #000;
@@ -11,7 +17,8 @@ $primary: #52057B;
     align-items: center;
     justify-content: center;
     .formWrapper{
-        background-color: #52057B;
+        background-color: $sec;
+        color: white;
         padding: 70px 120px;
         border-radius: 10px;
         display: flex;
@@ -31,6 +38,8 @@ $primary: #52057B;
             input{
                 padding: 15px;
                 border: none;
+                outline: none;
+                font-size: 16px;
                 border-radius: 3px;
                 &::placeholder{
                     font-size: 16px;
@@ -38,7 +47,7 @@ $primary: #52057B;
                 }
             }
             button{
-                background-color: #892CDC;
+                background-color: $fifth;
                 color: white;
                 padding: 15px;
                 font-size: 18px;
@@ -46,11 +55,15 @@ $primary: #52057B;
                 border: none;
                 cursor: pointer;
             }
+            button:hover{
+                background-color: white;
+                color: $fourth;
+            }
             label{
                 display: flex;
                 align-items: center;
                 gap:10px;
-                color: #000;
+                color: #fff;
                 font-size: 15px;
                 cursor: pointer;
                 image{
@@ -60,7 +73,7 @@ $primary: #52057B;
 
         }
         p{
-            color:#000;
+            color:#fff;
             font-size: 15px;
             margin-top: 20px;
         }
@@ -78,15 +91,18 @@ $primary: #52057B;
         flex-direction: row;
         .sidebar-container{
             flex: 1;
-            background-color: grey;
+            background-color: $ter;
+            color: white;
 
             .navbar{
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                background-color: aqua;
-                height: 75px;
+                background-color: $sec;
+                color: white;
+                height: 65px;
                 padding: 10px;
+                border-right:1px solid #000;
                 .logo{
                     font-size:26px;
                 }
@@ -94,6 +110,7 @@ $primary: #52057B;
                     display: flex;
                     gap: 10px;
                     align-items: center;
+                    position: relative;
             
                     img {
                         background-color: #ddddf7;
@@ -105,6 +122,30 @@ $primary: #52057B;
 
                     span{
                         font-size: 20px;
+                    }
+
+                    .options-menu{
+                        
+                        position: relative;
+                        z-index: 1;
+                        cursor: pointer;
+                        transition: transform 0.3s ease;
+                        
+                        
+                        .option{
+                            position: absolute;
+                                top: 100%;
+                                left: 0;
+                                background-color: $sec;
+                                padding: 10px 40px;
+                                border: 1px solid #ccc;
+                                border-radius: 3px;
+                                display: none;
+                                z-index: 2;
+                        }
+                        .option:hover{
+                            background-color: $ter;
+                        }
                     }
             
                     button {
@@ -118,6 +159,7 @@ $primary: #52057B;
             }
 
             .search,.chats{
+                //background-color: #152D35;
                 display: flex;
                 flex-direction: column;
                 
@@ -163,7 +205,11 @@ $primary: #52057B;
                         //justify-content: flex-start;
                         span{
                             font-size: 18px;
-                            font-weight: bold;
+                            //font-weight: bold;
+                        }
+                        p{
+                            font-size: 15px;
+                            margin-top: 5px;
                         }
                     }
                 }
@@ -182,45 +228,38 @@ $primary: #52057B;
             
         .chat {
             flex: 3;
-            background-color: #52057B;
+            
             .chatInfo {
-                height: 50px;
-                background-color: #5d5b8d;
+                height: 65px;
+                background-color: $sec;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 padding: 10px;
                 color: lightgray;
-                .chatIcons {
-                        display: flex;
-                        // gap: 10px;
+                font-size: 25px;
 
-                        // .options{
-                        //     font-size:50px;
-                            
-                        // }
-                
-                        // img {
-                        //     height: 24px;
-                        //     cursor: pointer;
-                        // }
+                .chatIcons {
+                    display: flex;
+                    span{
+                        background-color: #000;
                     }
+                }
             }
 
             .messages{
-                background-color: #ddddf7;
-                height: calc(100% - 140px);
+                background-color: $primary;
+                height: calc(100% - 155px);
                 overflow: scroll;
 
                 .message {
                     display: flex;
                     gap: 20px;
-                    margin-bottom: 20px;
+                    margin: 20px;
             
                     .messageInfo {
                         display: flex;
                         flex-direction: column;
-                        color: gray;
                         font-weight: 300;
             
                         img {
@@ -229,6 +268,10 @@ $primary: #52057B;
                             border-radius: 50%;
                             object-fit: cover;
                         }
+                        span{
+                            font-size: 12px;
+                            color: $fifth;
+                        }
                     }
             
                     .messageContent {
@@ -236,16 +279,23 @@ $primary: #52057B;
                         display: flex;
                         flex-direction: column;
                         gap: 10px;
+                        margin-bottom: 20px;
             
-                        p {
-                            background-color: white;
+                        .text{
+                            
+                            background-color: $fourth;
+                            color: white;
                             padding: 10px 20px;
                             border-radius: 0px 10px 10px 10px;
-                            max-width: max-content;
+                            max-width: 500px;
+                            word-wrap: break-word;
                         }
             
                         img {
-                            width: 50%;
+                            width: 300px;
+                            height: 300px;
+                            border: 5px solid $fifth;
+                            border-radius: 6px;
                         }
                     }
             
@@ -256,8 +306,9 @@ $primary: #52057B;
                             align-items: flex-end;
             
                             p {
-                                background-color: #8da4f1;
+                                background-color: $fifth;
                                 color: white;
+                                margin-top: 10px;
                                 border-radius: 10px 0px 10px 10px;
                             }
                         }
@@ -267,22 +318,33 @@ $primary: #52057B;
 
             .input {
                 height: 50px;
-                background-color: white;
+                background-color: $sec;
                 padding: 10px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                position: relative;
 
-                input {
+                textarea {
                     width: 100%;
                     border: none;
-                    outline: none;
-                    color: #2f2d52;
+                    outline:#000;
+                    color: white;
                     font-size: 18px;
+                    background-color: $sec;
+                    border-radius: 5px;
+                    resize: none; /* Prevent resizing with the handle in the corner */
+                    // min-height: 100px; /* Set a minimum height for the textarea */
+                    max-height: 100px; /* Set a maximum height for the textarea */
+                    // overflow-y: auto;
 
                     &::placeholder {
                         color: lightgray;
                     }
+                }
+                textarea:focus {
+                    outline: none; /* Remove the default focus outline */
+                    //border:1px solid black; /* Change border color when focused */
                 }
                 .send {
                     display: flex;
@@ -296,13 +358,27 @@ $primary: #52057B;
 
                     button {
                         border: none;
+                        font-size: 18px;
                         padding: 10px 15px;
                         color: white;
-                        background-color: #8da4f1;
+                        background-color: $fifth;
                         cursor: pointer;
+                    }
+                    button:hover{
+                        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);;
                     }
                 }
             }
+        }
+
+        .welcomeScreen{
+            background-color: #202c33;
+            color: #e9edef;
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
     }
 }

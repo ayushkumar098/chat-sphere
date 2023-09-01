@@ -3,10 +3,16 @@ import Attach from "../assets/attach.png";
 import Img from "../assets/img.png";
 import { AuthContext } from "../context/authContext";
 import { ChatContext } from "../context/chatContext";
-import { arrayUnion, doc, updateDoc,Timestamp, serverTimestamp } from "firebase/firestore";
+import {
+  arrayUnion,
+  doc,
+  updateDoc,
+  Timestamp,
+  serverTimestamp,
+} from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 import { storage, db } from "../utils/firebase";
-import { getDownloadURL,ref, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const Input = () => {
   const { currentUser } = useContext(AuthContext);
@@ -15,7 +21,14 @@ const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
 
+  const handleKey = (e) => {
+    e.code === "Enter" && handleSend();
+  };
+
   const handleSend = async () => {
+    if(!text){
+      return;
+    }
     if (img) {
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, img);
@@ -43,37 +56,41 @@ const Input = () => {
           id: uuid(),
           text,
           senderId: currentUser.uid,
-          data: Timestamp.now(),
+          date: Timestamp.now(),
         }),
       });
     }
 
-    await updateDoc(doc(db, "userChats", currentUser.uid),{
-      [data.chatId+".lastMessage"]: {
-        text
-      },
-      [data.chatId+".date"]: serverTimestamp(),
-    })
-    await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
+    let slicedText=text;
+
+    if (text.length > 35) {
+      slicedText = text.slice(0, 35) + "...";
+    }
+    console.log(slicedText);
+
+    await updateDoc(doc(db, "userChats", currentUser.uid), {
+      [data.chatId + ".lastMessage"]: slicedText,
       [data.chatId + ".date"]: serverTimestamp(),
     });
-    setText('');
+    await updateDoc(doc(db, "userChats", data.user.uid), {
+      [data.chatId + ".lastMessage"]: slicedText,
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
+    setText("");
     setImg(null);
   };
 
   return (
     <div className="input">
-      <input
+      <textarea
         type="text"
         placeholder="Type Something..."
         value={text}
+        onKeyDown={handleKey}
         onChange={(e) => setText(e.target.value)}
-      />
+      ></textarea>
       <div className="send">
-        <img src={Attach} alt="" />
+        
         <input
           type="file"
           style={{ display: "none" }}

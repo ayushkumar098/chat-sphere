@@ -40,7 +40,7 @@ const Chats = () => {
               <span>
                 {chat[1].userInfo.displayName}
               </span>
-              <p>{chat[1].lastMessage?.text}</p>
+              <p>{chat[1].lastMessage}</p>
             </div>
           </div>
         ))}

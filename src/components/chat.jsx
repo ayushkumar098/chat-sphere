@@ -10,31 +10,19 @@ import { ChatContext } from "../context/chatContext";
 
 const Chat = () => {
   const { data } = useContext(ChatContext);
-  console.log(data);
-  // return (
-  //   <div className="chat">
-  //     <div className="chatInfo">
-  //       <span>{data.user?.displayName}</span>
-  //       <div className="chatIcon">
-  //         <img src={Add} />
-  //         <img src={Cam} />
-  //         <img src={More} />
-  //       </div>
-  //     </div>
-  //     <Messages />
-  //     <Input />
-  //   </div>
-  // );
+
   if (data.user.displayName) {
     return (
       <div className="chat">
         <div className="chatInfo">
           <span>{data.user?.displayName}</span>
           <div className="chatIcon">
-            <span style={{fontSize:"35px",paddingRight:"20px"}} className="options">&#8942;</span>
-            {/* <img src={Add} />
-            <img src={Cam} />
-            <img src={More} /> */}
+            <span
+              style={{ fontSize: "35px", paddingRight: "20px" }}
+              className="options"
+            >
+              &#8942;
+            </span>
           </div>
         </div>
         <Messages />
@@ -43,9 +31,16 @@ const Chat = () => {
     );
   } else {
     return (
-      <div className="chat">
-        <h2>Welcome to chat sphere</h2>
-        <span>Connect to your loved ones</span>
+      <div className="welcomeScreen">
+        <h2 className="heading">Welcome to Chat Sphere</h2>
+        <span>
+          Hello there! You can chat with any user by just searching their
+          username.
+        </span>
+        <span>
+          My username is ayush. You can chat with me by searching ayush in the
+          search box.
+        </span>
       </div>
     );
   }

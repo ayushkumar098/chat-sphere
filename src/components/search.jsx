@@ -24,7 +24,7 @@ const Search = () => {
       collection(db, "users"),
       where("displayName", "==", username)
     );
-
+ 
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
