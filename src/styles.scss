@@ -59,16 +59,29 @@ $fifth: #497f76;
                 background-color: white;
                 color: $fourth;
             }
-            label{
+            .file{
+                padding: 3px 8px;
                 display: flex;
                 align-items: center;
                 gap:10px;
                 color: #fff;
                 font-size: 15px;
                 cursor: pointer;
-                image{
-                    width: 10px;
+                border: 1px solid white;
+                border-radius: 5px;
+
+                .addDisplayPicture{
+                    width: 50px;
+                    fill: wheat;
                 }
+                span{
+                    font-size: 18px;
+                }
+            }
+            .file:hover{
+                box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.1);
+                transform: translateY(2px);
+                
             }
 
         }
@@ -138,7 +151,7 @@ $fifth: #497f76;
                                 left: 0;
                                 background-color: $sec;
                                 padding: 10px 40px;
-                                border: 1px solid #ccc;
+                                border: 1px solid $ter;
                                 border-radius: 3px;
                                 display: none;
                                 z-index: 2;
@@ -174,6 +187,17 @@ $fifth: #497f76;
                         padding: 7px;
                         border-radius: 10px;
                         border: none;
+                    }
+                    .searchIcon{
+                        margin-left: 10px;
+                        width: 25px;
+                        height: 25px;
+                        padding: 5px;
+                        border-radius: 4px;
+                    }
+                    .searchIcon:hover{
+                        box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.5);
+                        transform: translateY(2px);
                     }
                     
                 }
@@ -249,6 +273,7 @@ $fifth: #497f76;
 
             .messages{
                 background-color: $primary;
+                background-image: url("./assets/background.jpeg");
                 height: calc(100% - 155px);
                 overflow: scroll;
 

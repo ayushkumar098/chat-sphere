@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { ReactComponent as SearchIcon } from "../assets/searchIcon.svg";
 import { db } from "../utils/firebase";
 import {
   collection,
@@ -24,7 +25,7 @@ const Search = () => {
       collection(db, "users"),
       where("displayName", "==", username)
     );
- 
+
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
@@ -35,9 +36,9 @@ const Search = () => {
     }
   };
 
-   const handleKey = (e) => {
-     e.code === "Enter" && handleSearch();
-   };
+  const handleKey = (e) => {
+    e.code === "Enter" && handleSearch();
+  };
 
   const handleSelect = async () => {
     const combinedId =
@@ -82,6 +83,7 @@ const Search = () => {
           onKeyDown={handleKey}
           onChange={(event) => setUsername(event.target.value)}
         />
+        <SearchIcon className="searchIcon" onClick={handleSearch}/>
       </div>
       {err && <span>User not found</span>}
       {user && (
